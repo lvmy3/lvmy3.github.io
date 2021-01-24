@@ -162,7 +162,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/01/24/firstblog/" class="post-title-link" itemprop="url">firstblog</a>
+            <a href="/2021/01/24/firstblog/" class="post-title-link" itemprop="url">Hexo+github 搭建博客网站</a>
         </h2>
 
         <div class="post-meta">
@@ -171,8 +171,9 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2021-01-24 10:48:05" itemprop="dateCreated datePublished" datetime="2021-01-24T10:48:05+08:00">2021-01-24</time>
+              <time title="Created: 2021-01-24 10:48:05 / Modified: 14:46:23" itemprop="dateCreated datePublished" datetime="2021-01-24T10:48:05+08:00">2021-01-24</time>
             </span>
 
           
@@ -186,7 +187,27 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <h1 id="Hexo-github搭建博客网站"><a href="#Hexo-github搭建博客网站" class="headerlink" title="Hexo+github搭建博客网站"></a>Hexo+github搭建博客网站</h1><h2 id="环境介绍"><a href="#环境介绍" class="headerlink" title="环境介绍"></a>环境介绍</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">macOS Big Sur 11.1</span><br><span class="line">hexo 5.3.0</span><br><span class="line">node.js 15.6.0</span><br></pre></td></tr></table></figure>
+<h2 id="安装Hexo、node-js"><a href="#安装Hexo、node-js" class="headerlink" title="安装Hexo、node.js"></a>安装Hexo、node.js</h2><h3 id="安装homebrew"><a href="#安装homebrew" class="headerlink" title="安装homebrew"></a>安装homebrew</h3><p>如果没有安装homebrew，先执行以下命令安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ruby -e &quot;$(curl -fsSL https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Homebrew&#x2F;install&#x2F;master&#x2F;install)&quot;</span><br></pre></td></tr></table></figure>
+<p>可以使用<code>brew -v</code>验证是否安装成功</p>
+<h3 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew install git</span><br><span class="line">git --version</span><br></pre></td></tr></table></figure>
+<h3 id="安装node-js"><a href="#安装node-js" class="headerlink" title="安装node.js"></a>安装node.js</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew install node</span><br><span class="line">node -v</span><br></pre></td></tr></table></figure>
+<p>安装过程中遇到了link失败没有权限的问题，执行以下代码后，重新安装或者根据<code>brew doctor</code>提示操作即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R $(whoami) $(brew --prefix)&#x2F;*</span><br></pre></td></tr></table></figure>
+<h3 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo</span><br><span class="line">hexo -v</span><br></pre></td></tr></table></figure>
+<h2 id="页面设置-创建博客-调试博客"><a href="#页面设置-创建博客-调试博客" class="headerlink" title="页面设置+创建博客+调试博客"></a>页面设置+创建博客+调试博客</h2><h3 id="页面设置"><a href="#页面设置" class="headerlink" title="页面设置"></a>页面设置</h3><p>执行<code>hexo init Blog</code>创建一个本地目录Blog用来放博客文件，进入到Blog文件夹后，既然是自己的博客，自然要给他取个nb一点的名字和响亮一点的口号啦。编辑_config.yaml文件，修改以下内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Site</span><br><span class="line">title: 博客的名字</span><br><span class="line">subtitle: 博客副标题</span><br><span class="line">description: 博客描述</span><br><span class="line">author: 博客作者</span><br><span class="line">language: zh-Hans</span><br></pre></td></tr></table></figure>
+<p>language改成zh-Hans是为了支持中文，设不设都行，看你自己</p>
+<h3 id="创建博客"><a href="#创建博客" class="headerlink" title="创建博客"></a>创建博客</h3><p>在Blog文件夹下执行<code>hexo new blogname</code>就可以在Blog/source/_posts中创建一个名为blogname的markdown文件，写博客就是在这个markdown文件里面写了。</p>
+<h3 id="本地调试"><a href="#本地调试" class="headerlink" title="本地调试"></a>本地调试</h3><p>在命令行中输入<code>sudo hexo s</code>即可在浏览器中输入<code>localhost:4000</code>访问了你的博客网站了</p>
+<h2 id="发布博客到github"><a href="#发布博客到github" class="headerlink" title="发布博客到github"></a>发布博客到github</h2><h3 id="创建仓库"><a href="#创建仓库" class="headerlink" title="创建仓库"></a>创建仓库</h3><p>在GitHub上面需要新建一个名为<code>你的用户名.github.io</code>的仓库，其他地方不用改</p>
+<h3 id="安装发布插件"><a href="#安装发布插件" class="headerlink" title="安装发布插件"></a>安装发布插件</h3><p>进入到刚才的博客文件夹Blog，执行以下命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<p>安装完成后，修改Blog文件夹下的_config.yaml中deploy部分如下，注意将里面的yourusername替换成你自己的github用户名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git  &#x2F;&#x2F;使用Git 发布</span><br><span class="line">  repo: https:&#x2F;&#x2F;github.com&#x2F;yourusername&#x2F;yourusername.github.io.git  &#x2F;&#x2F;自己的Github仓库地址</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+<h3 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h3><p>依次执行<code>sudo hexo g</code> <code>sudo hexo d</code>即可，其中的g和d是generate和deploy的简写，这样就比较好记了。但是要注意的是，如果你修改了网站的源码，在发布之前，需要先<code>sudo hexo clean</code>一下，清理hexo的缓存</p>
+
       
     </div>
 
@@ -336,6 +357,10 @@
           <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">posts</span>
         </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">tags</span>
       </div>
   </nav>
 </div>
